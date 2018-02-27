@@ -2,7 +2,7 @@
 * @Author: wrma
 * @Date:   2018-02-24 19:59:58
 * @Last Modified by:   wrma
-* @Last Modified time: 2018-02-25 20:44:07
+* @Last Modified time: 2018-02-27 18:26:46
 */
 const path = require('path');
 const webpack = require('webpack');
@@ -19,11 +19,18 @@ module.exports = {
         publicPath: '/dist/',
         filename: 'js/bundle.js'
     },
+    resolve: {
+		alias : {
+			page : path.resolve(__dirname, 'src/page'),
+			component : path.resolve(__dirname, 'src/component'),
+		}
+    },
     plugins: [
     	//处理html文件
     	new HtmlWebpackPlugin({
     		// 该文件的默认输出为dist/index.html
-    		template: './src/index.html'
+    		template: './src/index.html',//入口html文件模板
+    		favicon: './favicon.ico'
     	}),
     	//独立css文件
     	//将文件提取到dist/css/[name].css name为src里面css文件的名字
@@ -98,6 +105,10 @@ module.exports = {
 	devServer: {
 		// 已经设置了publicPath为dist,contentBase可以不用设置
 		// contentBase: './dist'
-		port: 8086
+		port: 8081,
+		//当页面不存在的时候就会返回我们设置的这个页面
+		historyApiFallback: {
+			index: '/dist/index.html'
+		}
 	},
 };
