@@ -2,7 +2,7 @@
 * @Author: wrma
 * @Date:   2018-02-24 19:59:58
 * @Last Modified by:   wrma
-* @Last Modified time: 2018-02-27 18:26:46
+* @Last Modified time: 2018-03-02 22:35:48
 */
 const path = require('path');
 const webpack = require('webpack');
@@ -21,8 +21,10 @@ module.exports = {
     },
     resolve: {
 		alias : {
-			page : path.resolve(__dirname, 'src/page'),
-			component : path.resolve(__dirname, 'src/component'),
+			page 		: path.resolve(__dirname, 'src/page'),
+			component 	: path.resolve(__dirname, 'src/component'),
+			util 		: path.resolve(__dirname, 'src/util'),
+			service 	: path.resolve(__dirname, 'src/service'),
 		}
     },
     plugins: [
@@ -109,6 +111,20 @@ module.exports = {
 		//当页面不存在的时候就会返回我们设置的这个页面
 		historyApiFallback: {
 			index: '/dist/index.html'
+		},
+		//配置代理，处理跨域请求的问题
+		proxy : {
+			//匹配到/manage开头的路径就自动代理过去
+			'/manage' : {
+				target : 'http://admintest.happymmall.com',
+				//将localhost伪装成从target发过来的请求，实现跨域的作用
+				changeOrigin : true
+			},
+			'/user/logout.do' : {
+				target : 'http://admintest.happymmall.com',
+				//将localhost伪装成从target发过来的请求，实现跨域的作用
+				changeOrigin : true
+			},
 		}
 	},
 };
