@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Mutil from 'util/mm.jsx';
+import User from 'service/user-service.jsx';
 const _mm = new Mutil();
+const _user = new User();
 
 class NavTop extends React.Component{
 	constructor(props){

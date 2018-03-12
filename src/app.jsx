@@ -14,6 +14,7 @@ import Home from 'page/home/index.jsx';
 import Login from 'page/login/index.jsx';
 import ErrorPage from 'page/error/index.jsx';
 import UserList from 'page/user/index.jsx';
+import ProductRouter from 'page/product/router.jsx';
 
 class App extends React.Component{
 	render(){
@@ -25,8 +26,8 @@ class App extends React.Component{
 					<Route exact path='/' component={Home} />
 					{/*如果匹配不到/的话，就把所有的路径都跳到/*/}
 					{/*<Redirect from='*' to="/"></Redirect>*/}
-					<Route path='/product' component={Home} />
-					<Route path='/product-category' component={Home} />
+					<Route path='/product' component={ProductRouter} />
+					<Route path='/product-category' component={ProductRouter} />
 					<Route path='/user/index' component={UserList} />
 					<Redirect exact from='/user' to='/user/index' />
 					{/*所有路径都没有被匹配到，则跳转到错误页面*/}
@@ -41,7 +42,7 @@ class App extends React.Component{
 					{/*其他所有的页面都让他匹配到有导航的部分*/}
 					<Route path='/' render={(props) => {
 						return LayoutRouter;
-					}}></Route>
+					}}/>
 				</Switch>
 			</Router>
 		);

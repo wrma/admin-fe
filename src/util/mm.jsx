@@ -17,11 +17,12 @@ class Mutil{
 					if (res.status === 0) {
 						typeof resolve === 'function' && resolve(res.data,res.msg);
 					}
-					//没有登录状态，强制登陆
+					//每当请求接口,却没有登录状态时，就会强制登陆
 					else if(res.status === 10){
 						//由于success用的是箭头函数的形式，不占作用域，所以this指向的是外面那层对象
 						//否则就要在外层用 let _this = this;的方式来保存this指向
 						this.doLogin();
+						//(我们发现首页请求接口时，无论是否登录status都为0，所以首页不会进行跳转)
 					}
 					else{
 						typeof reject === 'function' && reject(res.msg || res.data);
@@ -48,6 +49,9 @@ class Mutil{
 		let result = queryString.match(reg);
 		//result: ['param=123','','123','&']
 		return result ? decodeURIComponent(result[2]) : null;
+	}
+	successTips(successMsg){
+		alert(successMsg || '操作成功');
 	}
 	//错误提示
 	errorTips(errMsg){
