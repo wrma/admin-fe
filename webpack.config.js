@@ -2,12 +2,15 @@
 * @Author: wrma
 * @Date:   2018-02-24 19:59:58
 * @Last Modified by:   wrma
-* @Last Modified time: 2018-03-02 22:35:48
+* @Last Modified time: 2018-03-13 19:26:10
 */
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
+console.log(WEBPACK_ENV);
 
 module.exports = {
     entry: './src/app.jsx',
@@ -16,7 +19,7 @@ module.exports = {
     	//在当前目录下找到dist文件
         path: path.resolve(__dirname, 'dist'),
         //引用的文件是从根目录下的dist文件开始查找的
-        publicPath: '/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.wrma.top/admin-v2-fe/dist/',
         filename: 'js/bundle.js'
     },
     resolve: {
