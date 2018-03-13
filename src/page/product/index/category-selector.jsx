@@ -76,9 +76,6 @@ class CategorySelector extends React.Component{
 	}
 	//选择一级品类
 	onFirstCategoryChange(e){
-		if(this.props.readOnly){
-			return
-		}
 		let newValue = e.target.value || 0;
 		this.setState({
 			firstCategoryId : newValue,
@@ -94,9 +91,6 @@ class CategorySelector extends React.Component{
 	}
 	//选择二级品类
 	onSecondCategoryChange(e){
-		if(this.props.readOnly){
-			return
-		}
 		let newValue = e.target.value || 0;
 		this.setState({
 			secondCategoryId : newValue

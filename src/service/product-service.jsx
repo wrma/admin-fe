@@ -29,16 +29,6 @@ class Product{
 			data : productInfo
 		});
 	}
-	//获取品类列表
-	getCategoryList(parentCategoryId){
-		return _mm.request({
-			type : 'post',
-			url : '/manage/category/get_category.do',
-			data : {
-				categoryId : parentCategoryId || 0
-			}
-		});
-	}
 	//检查保存商品表单的数据
 	checkProduct(product){
 		// console.log(product);
@@ -104,6 +94,32 @@ class Product{
 			data : {
 				productId : productId || 0
 			}
+		});
+	}
+	//获取品类列表
+	getCategoryList(parentCategoryId){
+		return _mm.request({
+			type : 'post',
+			url : '/manage/category/get_category.do',
+			data : {
+				categoryId : parentCategoryId || 0
+			}
+		});
+	}
+	//新增品类
+	saveCategory(category){
+		return _mm.request({
+			type : 'post',
+			url : '/manage/category/add_category.do',
+			data : category
+		});
+	}
+	//修改品类名称
+	updateCategoryName(category){
+		return _mm.request({
+			type : 'post',
+			url : '/manage/category/set_category_name.do',
+			data : category
 		});
 	}
 }
