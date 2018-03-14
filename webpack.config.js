@@ -2,7 +2,7 @@
 * @Author: wrma
 * @Date:   2018-02-24 19:59:58
 * @Last Modified by:   wrma
-* @Last Modified time: 2018-03-13 19:26:10
+* @Last Modified time: 2018-03-14 10:32:25
 */
 const path = require('path');
 const webpack = require('webpack');
@@ -19,7 +19,7 @@ module.exports = {
     	//在当前目录下找到dist文件
         path: path.resolve(__dirname, 'dist'),
         //引用的文件是从根目录下的dist文件开始查找的
-        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.wrma.top/admin-v2-fe/dist/',
+        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '//s.wrma.top/admin-fe/dist/',
         filename: 'js/bundle.js'
     },
     resolve: {
